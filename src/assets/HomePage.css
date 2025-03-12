@@ -1,126 +1,160 @@
 /* HomePage.css */
 
+/* Background Image for the Entire Homepage */
+.home-page {
+  background: url('homepagebg.jpg') no-repeat center center/cover;
+  min-height: 100vh;
+  border-radius: 15px; /* Rounded corners for the background */
+  overflow: hidden; /* Ensures the rounded corners are visible */
+}
+
+/* Auth Buttons in the Upper Right Corner */
+.auth-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.auth-buttons .btn {
+  font-weight: bold;
+}
+
 /* Hero Section */
 .hero-section {
-    background: url('parking-hero.jpg') no-repeat center center/cover;
-    color: white;
-    padding: 150px 0;
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .hero-section h1 {
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  .hero-section p {
-    font-size: 1.5rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-  }
-  
-  /* Animations */
-  .animate-fade-in {
+  padding-top: 150px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-section h1 {
+  font-weight: bold;
+}
+
+.hero-section p {
+  font-size: 1.5rem;
+}
+
+/* Features Section */
+.features-section {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  margin: 20px;
+  border-radius: 15px; /* Rounded corners for the features section */
+  padding: 20px;
+}
+
+.feature-item {
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-item:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.feature-item h3 {
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.feature-item p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Additional Content Section */
+.additional-content {
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  margin: 20px;
+  border-radius: 15px; /* Rounded corners for the additional content section */
+  padding: 20px;
+}
+
+.additional-content h2 {
+  color: #007bff;
+  margin-bottom: 30px;
+}
+
+/* Footer */
+.footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+  color: white;
+}
+
+/* Animations */
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 1.5s ease-in-out forwards;
+}
+
+.animate-fade-in.animate-delay-1 {
+  animation-delay: 0.5s;
+}
+
+.animate-fade-in.animate-delay-2 {
+  animation-delay: 1s;
+}
+
+.animate-slide-in-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideInLeft 1s ease-in-out forwards;
+}
+
+.animate-slide-in-up {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideInUp 1s ease-in-out forwards;
+}
+
+.animate-slide-in-right {
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideInRight 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
     opacity: 0;
-    animation: fadeIn 1.5s ease-in-out forwards;
   }
-  
-  .animate-fade-in.animate-delay-1 {
-    animation-delay: 0.5s;
+  to {
+    opacity: 1;
   }
-  
-  .animate-fade-in.animate-delay-2 {
-    animation-delay: 1s;
-  }
-  
-  .animate-slide-in-left {
+}
+
+@keyframes slideInLeft {
+  from {
     opacity: 0;
     transform: translateX(-50px);
-    animation: slideInLeft 1s ease-in-out forwards;
   }
-  
-  .animate-slide-in-up {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
     opacity: 0;
     transform: translateY(50px);
-    animation: slideInUp 1s ease-in-out forwards;
   }
-  
-  .animate-slide-in-right {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
     opacity: 0;
     transform: translateX(50px);
-    animation: slideInRight 1s ease-in-out forwards;
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
-  
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideInUp {
-    from {
-      opacity: 0;
-      transform: translateY(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
-  /* Features Section */
-  .features-section {
-    background-color: #f8f9fa;
-  }
-  
-  .feature-item {
-    background-color: white;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .feature-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .feature-item h3 {
-    color: #007bff;
-    margin-bottom: 15px;
-  }
-  
-  .feature-item p {
-    font-size: 1rem;
-    color: #555;
-  }
-  
-  /* Footer */
-  .footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
-  }
+}

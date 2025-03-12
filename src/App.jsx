@@ -25,7 +25,7 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/login" || location.pathname === "/signup") {
+    if (location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/homepage") {
       document.body.className = ""; // Remove  css class for login and signup
     } else {
       document.body.className =
@@ -37,13 +37,18 @@ function App() {
     <div>
       <>
       {/* <Navbar></Navbar> */}
-      <div className={location.pathname === "/login" || location.pathname === "/signup" ? "" : "app-wrapper"}>
+      <div className={location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/homepage"? "" : "app-wrapper"}>
         <Routes>
-          <Route path='/' element={<Login/>}></Route>
-          <Route path='/homepage' element={<HomePage/>}></Route>
-          <Route path='/login' element={<Login/>}></Route>
-          <Route path='/signup' element={<SignUp/>}></Route>
+          
+          {/* <Route path='/' element={<HomePage/>}></Route>
+          <Route path='homepage' element={<HomePage/>}>
+          <Route path='login' element={<Login/>}></Route>
+          <Route path='signup' element={<SignUp/>}></Route>
+          <Route path='reserveslot' element={<ReserveSlot/>}></Route>
+          </Route> */}
           <Route path='/reserveslot' element={<ReserveSlot/>}></Route>
+          <Route path='/login' element={<Login/>}></Route>
+          <Route pathoh='/signup' element={<SignUp/>}></Route>
           <Route path='/user' element={<UserSidebar/>}>
             <Route path='homepage' element={<HomePage/>}></Route>
             <Route path='reserveslot' element={<ReserveSlot/>}></Route>
