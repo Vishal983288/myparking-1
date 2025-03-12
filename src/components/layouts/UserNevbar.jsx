@@ -1,24 +1,30 @@
-import React from 'react'
+import React from "react";
+import hamburgermenu from "../../assets/logo2.png";
 
-export const UserNevbar = () => {
+export const UserNevbar = ({ toggleSidebar }) => {
   return (
     <nav className="app-header navbar navbar-expand bg-body">
-      
+      {/*begin::Container*/}
       <div className="container-fluid">
-        
         <ul className="navbar-nav">
           <li className="nav-item">
             <a
-              className="nav-link"
-              data-lte-toggle="sidebar"
+              className="nav-link btn btn-light"
               href="#"
               role="button"
+              style={{
+                color: "black",
+                padding: "5px 10px",
+                border: "1px solid #ccc",
+                borderRadius: "5px",
+              }}
+              onClick={toggleSidebar}
             >
-              <i className="bi bi-list" />
+              <img src={hamburgermenu} style={{height:"25px",width:"25px"}}></img>
             </a>
           </li>
           <li className="nav-item d-none d-md-block">
-            <a href="#" className="nav-link">
+            <a href="homepage" className="nav-link">
               Home
             </a>
           </li>
@@ -28,9 +34,8 @@ export const UserNevbar = () => {
             </a>
           </li>
         </ul>
-      
+
         <ul className="navbar-nav ms-auto">
-        
           <li className="nav-item">
             <a
               className="nav-link"
@@ -41,7 +46,7 @@ export const UserNevbar = () => {
               <i className="bi bi-search" />
             </a>
           </li>
-          
+
           <li className="nav-item dropdown">
             <a className="nav-link" data-bs-toggle="dropdown" href="#">
               <i className="bi bi-chat-text" />
@@ -49,7 +54,6 @@ export const UserNevbar = () => {
             </a>
             <div className="dropdown-menu dropdown-menu-lg dropdown-menu-end">
               <a href="#" className="dropdown-item">
-                
                 <div className="d-flex">
                   <div className="flex-shrink-0">
                     <img
@@ -71,11 +75,10 @@ export const UserNevbar = () => {
                     </p>
                   </div>
                 </div>
-              
               </a>
               <div className="dropdown-divider" />
               <a href="#" className="dropdown-item">
-               
+                {/*begin::Message*/}
                 <div className="d-flex">
                   <div className="flex-shrink-0">
                     <img
@@ -97,11 +100,9 @@ export const UserNevbar = () => {
                     </p>
                   </div>
                 </div>
-               
               </a>
               <div className="dropdown-divider" />
               <a href="#" className="dropdown-item">
-              
                 <div className="d-flex">
                   <div className="flex-shrink-0">
                     <img
@@ -123,7 +124,6 @@ export const UserNevbar = () => {
                     </p>
                   </div>
                 </div>
-                
               </a>
               <div className="dropdown-divider" />
               <a href="#" className="dropdown-item dropdown-footer">
@@ -131,7 +131,7 @@ export const UserNevbar = () => {
               </a>
             </div>
           </li>
-         
+
           <li className="nav-item dropdown">
             <a className="nav-link" data-bs-toggle="dropdown" href="#">
               <i className="bi bi-bell-fill" />
@@ -163,7 +163,7 @@ export const UserNevbar = () => {
               </a>
             </div>
           </li>
-       
+
           <li className="nav-item">
             <a className="nav-link" href="#" data-lte-toggle="fullscreen">
               <i data-lte-icon="maximize" className="bi bi-arrows-fullscreen" />
@@ -174,7 +174,7 @@ export const UserNevbar = () => {
               />
             </a>
           </li>
-         
+
           <li className="nav-item dropdown user-menu">
             <a
               href="#"
@@ -189,7 +189,7 @@ export const UserNevbar = () => {
               <span className="d-none d-md-inline">Alexander Pierce</span>
             </a>
             <ul className="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-             
+              {/*begin::User Image*/}
               <li className="user-header text-bg-primary">
                 <img
                   src="../../dist/assets/img/user2-160x160.jpg"
@@ -201,9 +201,8 @@ export const UserNevbar = () => {
                   <small>Member since Nov. 2023</small>
                 </p>
               </li>
-              
+
               <li className="user-body">
-              
                 <div className="row">
                   <div className="col-4 text-center">
                     <a href="#">Followers</a>
@@ -215,9 +214,8 @@ export const UserNevbar = () => {
                     <a href="#">Friends</a>
                   </div>
                 </div>
-               
               </li>
-             
+
               <li className="user-footer">
                 <a href="#" className="btn btn-default btn-flat">
                   Profile
@@ -226,15 +224,10 @@ export const UserNevbar = () => {
                   Sign out
                 </a>
               </li>
-             
             </ul>
           </li>
-          
         </ul>
-        
       </div>
-     
     </nav>
-    
-  )
-}
+  );
+};

@@ -1,46 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+//import reactLogo from './assets/react.svg'
+//import viteLogo from '/vite.svg'
+
+
+
 //import './App.css'
 import "./assets/adminlte.css"
 import "./assets/adminlte.min.css"
-import { Route, Routes } from 'react-router-dom'
 import { Login } from './components/pages/Login'
-import { SingUp } from './components/pages/SingUp'
+import SignUp from './components/pages/SignUp'
 import { Navbar } from './components/Navbar'
 import { HomePage } from './components/homepage/HomePage'
 import { UserSidebar } from './components/layouts/UserSidebar'
 import { UserProfile } from './components/homepage/users/UserProfile'
-function App() {
-  
+import { AdminDashBoard } from './components/homepage/admin/AdminDashBoard'
+import axios from 'axios'
+import { Route, Routes, useLocation } from 'react-router-dom'
+import { ReserveSlot } from './components/homepage/users/ReserveSlot'
+import { Parking } from './components/homepage/users/Parking'
 
+function App() {
+  axios.defaults.baseURL='http://localhost:3000/user'
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/login" || location.pathname === "/signup") {
+      document.body.className = ""; // Remove  css class for login and signup
+    } else {
+      document.body.className =
+        "layout-fixed sidebar-expand-lg bg-body-tertiary sidebar-open app-loaded";
+    }
+  }, [location.pathname]);
+  
   return (
     <div>
       <>
-      {/* <Navbar></Navbar>
-    <Routes>
-
-      <Route path='/' element={<HomePage/>}></Route>
-      <Route path='/login' element={<Login/>}></Route>
-      <Route path='/singup' element={<SingUp/>}></Route>
-
-    </Routes> */}
-    <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
-      <div className='app-wrapper'>
-        
+      {/* <Navbar></Navbar> */}
+      <div className={location.pathname === "/login" || location.pathname === "/signup" ? "" : "app-wrapper"}>
         <Routes>
-          <Route path='/' element={<HomePage/>}></Route>
+          <Route path='/' element={<Login/>}></Route>
+          <Route path='/homepage' element={<HomePage/>}></Route>
           <Route path='/login' element={<Login/>}></Route>
-          <Route path='/singup' element={<SingUp/>}></Route>
+          <Route path='/signup' element={<SignUp/>}></Route>
+          <Route path='/reserveslot' element={<ReserveSlot/>}></Route>
           <Route path='/user' element={<UserSidebar/>}>
-          <Route path='profile' element={<UserProfile/>}></Route>
+            <Route path='homepage' element={<HomePage/>}></Route>
+            <Route path='reserveslot' element={<ReserveSlot/>}></Route>
+            <Route path='profile' element={<UserProfile/>}></Route>
+            <Route path='parking' element={<Parking/>}></Route>
+            <Route path='admindash' element={<AdminDashBoard/>}></Route>
           </Route>
         </Routes>
       </div>
-    </body>
-
-
-    </>
+      </>
     </div>
   )
 }
