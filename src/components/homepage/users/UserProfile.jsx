@@ -22,26 +22,16 @@ export const UserProfile = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{textAlign:'center'}}>
       <div className="row g-4">
         <div className="col-12">
-          <div className="callout callout-info">
-            For detailed documentation of Form visit
-            <a
-              href="https://getbootstrap.com/docs/5.3/forms/overview/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="callout-link"
-            >
-              Bootstrap Form
-            </a>
-          </div>
+         
         </div>
 
         <div className="col-md-6">
           <div className="card card-primary card-outline mb-4">
             <div className="card-header">
-              <div className="card-title">Quick Example</div>
+              <div className="card-title">User Profile</div>
             </div>
             <form>
               <div className="card-body">
@@ -105,7 +95,7 @@ export const UserProfile = () => {
                       type="text"
                       className="form-control"
                       id="validationCustom01"
-                      defaultValue="Mark"
+                      defaultValue="First Name"
                       required
                     />
                     <div className="valid-feedback">Looks good!</div>
@@ -119,7 +109,7 @@ export const UserProfile = () => {
                       type="text"
                       className="form-control"
                       id="validationCustom02"
-                      defaultValue="Otto"
+                      defaultValue="Last Name"
                       required
                     />
                     <div className="valid-feedback">Looks good!</div>

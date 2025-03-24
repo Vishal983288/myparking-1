@@ -5,9 +5,9 @@ import '../../assets/HomePage.css'; // Custom CSS for additional styling
 
 export const HomePage = () => {
   return (
-    <div className="home-page">
+    <div className="home-page" style={{paddingTop: "10px"}}>
       {/* Login and Sign Up Buttons in the Upper Right Corner */}
-      <div className="auth-buttons">
+      <div className="auth-buttons" style={{paddingTop: "50px" , paddingRight: "10px"}}>
         <Link to="/login" className="btn btn-outline-light me-2">
           Login
         </Link>

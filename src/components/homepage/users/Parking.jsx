@@ -32,7 +32,7 @@ export const Parking = () => {
 
   const submitHandler = async (data) => {
     data.userId = localStorage.getItem("id");
-    const res = await axios.post("http://localhost:3000/addReservetion/addreservetion", data);
+    const res = await axios.post("http://localhost:3000/addparking", data);
     console.log(res.data);
   };
 

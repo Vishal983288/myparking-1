@@ -94,6 +94,10 @@ export const SignUp = () => {
             type="password"
             {...register("password", {
               required: "Password is required",
+              pattern:{
+                  value:/(?=.*[A-Za-z])(?=.*d)/,
+                  message:"password must contain at least one letter and on enumber"
+              },
               minLength: { value: 8, message: "Password must be at least 8 characters" },
             })}
             className={`input-field ${errors.password ? "input-error" : ""}`}
