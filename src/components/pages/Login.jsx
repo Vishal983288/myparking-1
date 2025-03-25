@@ -38,21 +38,36 @@ export const Login = () => {
     
     try {
       const res = await axios.post("http://localhost:3000/user/login", formData);
-      console.log(res.data);
+      console.log("Response Data:", res.data); // Debugging step
+    
       if (res.status === 200) {
         alert("Login successful");
-        localStorage.setItem("id", res.data.data._id);
-        localStorage.setItem("role", res.data.data.roleId.name);
-        if (res.data.data.roleId.name === "user") {
-          navigate("/user");
-        } else if (res.data.data.roleId.name === "parkingowner") {
-          navigate("/parkingowner");
+    
+        const userData = res.data.data;
+        
+        if (!userData) {
+          console.error("User data is undefined");
+          return;
+        }
+    
+        localStorage.setItem("id", userData._id);
+    
+        if (userData.roleId && userData.roleId.name) {
+          localStorage.setItem("role", userData.roleId.name);
+          if (userData.roleId.name === "user") {
+            navigate("/user");
+          } else if (userData.roleId.name === "parkingowner") {
+            navigate("/parkingowner");
+          }
+        } else {
+          console.error("roleId or roleId.name is undefined");
         }
       }
     } catch (error) {
+      console.error("Login Error:", error.response ? error.response.data : error);
       alert("Login failed. Please check your credentials.");
-      console.error("Login Error:", error);
     }
+    
   };
 
   return (
@@ -89,6 +104,9 @@ export const Login = () => {
       </form>
       <p className="signup-link">
         Don't have an account? <Link to="/signup">Sign up</Link>
+      </p>
+      <p className="signup-link">
+        Forget password <Link to="/resetpassword">Here</Link>
       </p>
     </div>
   );

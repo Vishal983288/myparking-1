@@ -83,11 +83,11 @@ export const UserSidebar = () => {
 
         {/* Sidebar Menu */}
         <List>
-          <ListItemButton component={Link} to="admindash">
+        <ListItemButton component={Link} to="userdash">
             <ListItemIcon sx={{ color: "white" }}>
-              <DashboardIcon />
+              <UserIcon />
             </ListItemIcon>
-            <ListItemText primary="Dashboard" />
+            <ListItemText primary="User Dashboard" />
           </ListItemButton>
 
           <ListItemButton component={Link} to="/">
@@ -111,12 +111,7 @@ export const UserSidebar = () => {
             <ListItemText primary="Parking" />
           </ListItemButton>
 
-          <ListItemButton component={Link} to="userdash">
-            <ListItemIcon sx={{ color: "white" }}>
-              <UserIcon />
-            </ListItemIcon>
-            <ListItemText primary="User Dashboard" />
-          </ListItemButton>
+          
 
           <Divider />
 

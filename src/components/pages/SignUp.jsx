@@ -15,8 +15,8 @@ export const SignUp = () => {
 
   const submitHandler = async (data) => {
     try {
-      console.log(data);
-      data.roleId = "67c86502e7f2b9d497547408";
+      console.log("Submitted Data:", data);
+      data.roleId = "67c86502e7f2b9d497547408"; 
 
       const res = await axios.post("http://localhost:3000/user/signup", data);
 
@@ -27,7 +27,7 @@ export const SignUp = () => {
         alert("User not created. Please try again.");
       }
     } catch (error) {
-      console.error("Error creating user:", error);
+      console.error("Error creating user:", error.response?.data || error);
       alert("An error occurred. Please try again later.");
     }
   };
@@ -41,9 +41,9 @@ export const SignUp = () => {
           <input
             type="text"
             {...register("firstname", { required: "First Name is required" })}
-            className={`input-field ${errors.firstName ? "input-error" : ""}`}
+            className={`input-field ${errors.firstname ? "input-error" : ""}`}
           />
-          {errors.firstName && <p className="error-message">{errors.firstName.message}</p>}
+          {errors.firstname && <p className="error-message">{errors.firstname.message}</p>}
         </div>
 
         <div className="form-group">
@@ -51,9 +51,9 @@ export const SignUp = () => {
           <input
             type="text"
             {...register("lastname", { required: "Last Name is required" })}
-            className={`input-field ${errors.lastName ? "input-error" : ""}`}
+            className={`input-field ${errors.lastname ? "input-error" : ""}`}
           />
-          {errors.lastName && <p className="error-message">{errors.lastName.message}</p>}
+          {errors.lastname && <p className="error-message">{errors.lastname.message}</p>}
         </div>
 
         <div className="form-group">
@@ -83,9 +83,9 @@ export const SignUp = () => {
                 message: "Invalid phone number (10 digits required)",
               },
             })}
-            className={`input-field ${errors.phone ? "input-error" : ""}`}
+            className={`input-field ${errors.phonenumber ? "input-error" : ""}`}
           />
-          {errors.phone && <p className="error-message">{errors.phone.message}</p>}
+          {errors.phonenumber && <p className="error-message">{errors.phonenumber.message}</p>}
         </div>
 
         <div className="form-group">
@@ -94,11 +94,18 @@ export const SignUp = () => {
             type="password"
             {...register("password", {
               required: "Password is required",
-              pattern:{
-                  value:/(?=.*[A-Za-z])(?=.*d)/,
-                  message:"password must contain at least one letter and on enumber"
+              pattern: {
+                value: /(?=.*[A-Za-z])(?=.*\d)/,
+                message: "Password must contain at least one letter and one number",
               },
-              minLength: { value: 8, message: "Password must be at least 8 characters" },
+              minLength: {
+                value: 8,
+                message: "Password must be at least 8 characters",
+              },
+              maxLength: {
+                value: 30,
+                message: "Password must not exceed 30 characters",
+              },
             })}
             className={`input-field ${errors.password ? "input-error" : ""}`}
           />

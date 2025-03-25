@@ -13,6 +13,7 @@ import { ReserveSlot } from './components/homepage/users/ReserveSlot'
 import { Parking } from './components/homepage/users/Parking'
 import { UserDashBoard } from './components/homepage/users/UserDashBoard'
 import { AdminSidebar } from './components/layouts/AdminSidebar'
+import { ResetPassword } from './components/pages/ResetPassword'
 
 function App() {
   axios.defaults.baseURL = 'http://localhost:3000/user'
@@ -30,10 +31,14 @@ function App() {
             <Route path='/login' element={<Login/>}></Route>
             <Route path='/signup' element={<SignUp/>}></Route>
             <Route path='/userdash' element={<UserDashBoard/>}></Route>
-            <Route path='/admindash' element={<AdminDashBoard/>}></Route>
-            <Route path='/admin' element={<AdminSidebar/>}></Route>
+            
+           
+            <Route path='/resetpassword' element={<ResetPassword/>}></Route>
 
 
+            
+            <Route path='/admin' element={<AdminSidebar/>}>
+            <Route path='admindash' element={<AdminDashBoard/>}></Route></Route>
             <Route path='/user' element={<UserSidebar/>}>
               <Route path='signup' element={<SignUp/>}></Route>
               <Route path='homepage' element={<HomePage/>}></Route>

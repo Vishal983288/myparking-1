@@ -9,7 +9,6 @@ import {
   Avatar,
   Divider,
   ListItemIcon,
-  ListItemText,
   Typography,
   Box,
   InputBase,
@@ -18,13 +17,12 @@ import {
 import {
   Menu as MenuIcon,
   Search as SearchIcon,
-  ChatBubbleOutline as ChatIcon,
   NotificationsNone as NotificationsIcon,
   Fullscreen as FullscreenIcon,
   FullscreenExit as FullscreenExitIcon,
-  Person as PersonIcon,
   Settings as SettingsIcon,
   ExitToApp as LogoutIcon,
+  AdminPanelSettings as AdminIcon,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -43,84 +41,50 @@ const Search = styled("div")(({ theme }) => ({
   alignItems: "center",
 }));
 
-const UserNavbar = ({ isSidebarOpen,toggleSidebar }) => {
+const AdminNavbar = ({ toggleSidebar, isSidebarOpen }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
-
+  const handleMenuOpen = (event) => setAnchorEl(event.currentTarget);
+  const handleMenuClose = () => setAnchorEl(null);
   const toggleFullscreen = () => {
-    if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen();
-    } else {
-      document.exitFullscreen();
-    }
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
     setIsFullscreen(!isFullscreen);
   };
 
   return (
-    <AppBar position="fixed" color="default" elevation={1}
-    sx={{
-      width: `calc(100% - ${isSidebarOpen ? 250 : 60}px)`, // Adjust width dynamically
-      marginLeft: isSidebarOpen ? "250px" : "60px", // Shift navbar when sidebar toggles
-      transition: "width 0.3s ease-in-out, margin 0.3s ease-in-out", // Smooth transition
-    }}
+    <AppBar
+      position="fixed"
+      color="default"
+      elevation={1}
+      sx={{
+        width: `calc(100% - ${isSidebarOpen ? 250 : 60}px)`,
+        marginLeft: isSidebarOpen ? "250px" : "60px",
+        transition: "width 0.3s ease-in-out, margin 0.3s ease-in-out",
+      }}
     >
-      <StyledToolbar >
-      <Box display="flex" alignItems="center" gap={2}>
+      <StyledToolbar>
+        <Box display="flex" alignItems="center" gap={2}>
           <IconButton onClick={toggleSidebar}>
             <MenuIcon />
           </IconButton>
-
-          {/* Home Link */}
           <Typography
             component={Link}
-            to="/"
+            to="/admin/dashboard"
             variant="h6"
-            sx={{
-              textDecoration: "none",
-              color: "inherit",
-              display: { xs: "none", sm: "block" },
-            }}
+            sx={{ textDecoration: "none", color: "inherit", display: { xs: "none", sm: "block" } }}
           >
-            Home
-          </Typography>
-
-          {/* Contact Link */}
-          <Typography
-            component={Link}
-            to="/contact"
-            sx={{
-              textDecoration: "none",
-              color: "inherit",
-              display: { xs: "none", md: "block" },
-            }}
-          >
-            Contact
+            Admin Dashboard
           </Typography>
         </Box>
-       
 
-        {/* Search Bar */}
         <Search>
           <SearchIcon fontSize="small" sx={{ color: "text.secondary", mr: 1 }} />
           <InputBase placeholder="Search..." />
         </Search>
 
-        {/* Right Section */}
         <Box display="flex" alignItems="center" gap={2}>
-          <IconButton>
-            <Badge badgeContent={3} color="error">
-              <ChatIcon />
-            </Badge>
-          </IconButton>
-
           <IconButton>
             <Badge badgeContent={5} color="warning">
               <NotificationsIcon />
@@ -131,20 +95,19 @@ const UserNavbar = ({ isSidebarOpen,toggleSidebar }) => {
             {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
           </IconButton>
 
-          {/* User Profile */}
           <IconButton onClick={handleMenuOpen}>
-            <Avatar src="/profile.jpg" sx={{ width: 32, height: 32 }} />
+            <Avatar src="/admin-profile.jpg" sx={{ width: 32, height: 32 }} />
           </IconButton>
 
           <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose}>
-            <MenuItem component={Link} to="profile">
+            <MenuItem component={Link} to="/admin/profile">
               <ListItemIcon>
-                <PersonIcon fontSize="small" />
+                <AdminIcon fontSize="small" />
               </ListItemIcon>
               Profile
             </MenuItem>
 
-            <MenuItem component={Link} to="/settings">
+            <MenuItem component={Link} to="/admin/settings">
               <ListItemIcon>
                 <SettingsIcon fontSize="small" />
               </ListItemIcon>
@@ -166,4 +129,4 @@ const UserNavbar = ({ isSidebarOpen,toggleSidebar }) => {
   );
 };
 
-export default UserNavbar;
+export default AdminNavbar;
