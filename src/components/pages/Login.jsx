@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Ensure correct import
 import "../../assets/Login.css";
 
 export const Login = () => {
@@ -34,40 +34,48 @@ export const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validateForm()) return;
-    
+
+    // Validate form before submitting
+    if (!validateForm()) {
+      console.error("Form validation failed");
+      return;
+    }
+
     try {
-      const res = await axios.post("http://localhost:3000/user/login", formData);
-      console.log("Response Data:", res.data); // Debugging step
-    
+      console.log("Submitting Login Request:", formData);
+      const res = await axios.post("http://localhost:3000/api/user/login", formData);
+
+      console.log("Full API Response:", res);
       if (res.status === 200) {
-        alert("Login successful");
-    
-        const userData = res.data.data;
-        
-        if (!userData) {
-          console.error("User data is undefined");
+        const userData = res.data?.data;
+        console.log("User Data:", userData);
+
+        if (!userData || !userData._id) {
+          console.error("Error: User data is missing or invalid.");
+          alert("Login failed: User data missing.");
           return;
         }
-    
-        localStorage.setItem("id", userData._id);
-    
-        if (userData.roleId && userData.roleId.name) {
+
+        // Clear any existing login data
+        localStorage.clear();
+        
+        // Set new user data
+        localStorage.setItem("userid", userData._id);
+        console.log("Stored UserID:", userData._id);
+
+        if (userData.roleId?.name) {
           localStorage.setItem("role", userData.roleId.name);
-          if (userData.roleId.name === "user") {
-            navigate("/user");
-          } else if (userData.roleId.name === "parkingowner") {
-            navigate("/parkingowner");
-          }
+          alert("Login successful");
+          navigate(userData.roleId.name === "user" ? "/user/homepage" : "/owner");
         } else {
-          console.error("roleId or roleId.name is undefined");
+          console.error("Role ID missing");
+          alert("Role not found.");
         }
       }
     } catch (error) {
-      console.error("Login Error:", error.response ? error.response.data : error);
+      console.error("Login Error:", error.response?.data?.message || error.message);
       alert("Login failed. Please check your credentials.");
     }
-    
   };
 
   return (
@@ -102,11 +110,13 @@ export const Login = () => {
           <button type="submit" className="submit-btn">Login</button>
         </div>
       </form>
+
+      <p>Don't have an account? Click <Link to="/signup">here</Link></p>
       <p className="signup-link">
-        Don't have an account? <Link to="/signup">Sign up</Link>
+        Forgot password? <Link to="/resetpassword">Click here</Link>
       </p>
       <p className="signup-link">
-        Forget password <Link to="/resetpassword">Here</Link>
+        Login for Parking Owner? <Link to="/ownerlogin">Click here</Link>
       </p>
     </div>
   );

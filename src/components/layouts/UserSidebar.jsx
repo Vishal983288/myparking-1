@@ -20,6 +20,7 @@ import {
   Person as UserIcon,
   Inventory as BoxIcon,
   ChevronRight as ChevronRightIcon,
+  CarRentalTwoTone,
 } from "@mui/icons-material";
 import { Link, Outlet } from "react-router-dom";
 import UserNavbar from "./UserNevbar"; 
@@ -90,14 +91,22 @@ export const UserSidebar = () => {
             <ListItemText primary="User Dashboard" />
           </ListItemButton>
 
-          <ListItemButton component={Link} to="/">
+          <ListItemButton component={Link} to="vehicledetails">
+            <ListItemIcon sx={{ color: "white" }}>
+              <CarRentalTwoTone />
+            </ListItemIcon>
+            <ListItemText primary="Vehicle Details" />
+          </ListItemButton>
+
+          <ListItemButton component={Link} to="searchparking">
             <ListItemIcon sx={{ color: "white" }}>
               <SearchIcon />
             </ListItemIcon>
             <ListItemText primary="Search Parking" />
           </ListItemButton>
+          
 
-          <ListItemButton component={Link} to="reserveslot">
+          {/* <ListItemButton component={Link} to="reserveslot">
             <ListItemIcon sx={{ color: "white" }}>
               <ReserveIcon />
             </ListItemIcon>
@@ -109,7 +118,9 @@ export const UserSidebar = () => {
               <ParkingIcon />
             </ListItemIcon>
             <ListItemText primary="Parking" />
-          </ListItemButton>
+          </ListItemButton> */}
+          
+          
 
           
 

@@ -3,6 +3,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import "../../assets/Signup.css";
+import { Link } from "react-router-dom";
+
 
 export const SignUp = () => {
   const {
@@ -16,9 +18,9 @@ export const SignUp = () => {
   const submitHandler = async (data) => {
     try {
       console.log("Submitted Data:", data);
-      data.roleId = "67c86502e7f2b9d497547408"; 
+      data.roleId = "67fe54130fe0cb85afa80146"; 
 
-      const res = await axios.post("http://localhost:3000/user/signup", data);
+      const res = await axios.post("http://localhost:3000/api/user/signup", data);
 
       if (res.status === 201) {
         alert("User created successfully");
@@ -127,6 +129,12 @@ export const SignUp = () => {
 
         <div>
           <button type="submit" className="submit-btn">Sign Up</button>
+          <p className="signup-link">
+        Already SignUp Click <Link to="/login">Here</Link>
+      </p>
+          <p className="signup-link">
+        SignUp for Parking Owner Click <Link to="/ownersignup">Here</Link>
+      </p>
         </div>
       </form>
     </div>

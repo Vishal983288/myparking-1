@@ -81,7 +81,7 @@ const UserNavbar = ({ isSidebarOpen,toggleSidebar }) => {
           {/* Home Link */}
           <Typography
             component={Link}
-            to="/"
+            to="homepage"
             variant="h6"
             sx={{
               textDecoration: "none",
@@ -95,7 +95,7 @@ const UserNavbar = ({ isSidebarOpen,toggleSidebar }) => {
           {/* Contact Link */}
           <Typography
             component={Link}
-            to="/contact"
+            to="contact"
             sx={{
               textDecoration: "none",
               color: "inherit",
@@ -104,6 +104,17 @@ const UserNavbar = ({ isSidebarOpen,toggleSidebar }) => {
           >
             Contact
           </Typography>
+          <Typography
+            component={Link}
+            to="aboutus"
+            sx={{
+              textDecoration: "none",
+              color: "inherit",
+              display: { xs: "none", md: "block" },
+            }}
+          >
+            About Us
+          </Typography>
         </Box>
        
 
@@ -111,11 +122,12 @@ const UserNavbar = ({ isSidebarOpen,toggleSidebar }) => {
         <Search>
           <SearchIcon fontSize="small" sx={{ color: "text.secondary", mr: 1 }} />
           <InputBase placeholder="Search..." />
+          
         </Search>
 
         {/* Right Section */}
         <Box display="flex" alignItems="center" gap={2}>
-          <IconButton>
+          {/* <IconButton>
             <Badge badgeContent={3} color="error">
               <ChatIcon />
             </Badge>
@@ -125,7 +137,7 @@ const UserNavbar = ({ isSidebarOpen,toggleSidebar }) => {
             <Badge badgeContent={5} color="warning">
               <NotificationsIcon />
             </Badge>
-          </IconButton>
+          </IconButton> */}
 
           <IconButton onClick={toggleFullscreen}>
             {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}

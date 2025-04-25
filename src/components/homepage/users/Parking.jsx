@@ -31,9 +31,17 @@ export const Parking = () => {
   const { register, handleSubmit } = useForm();
 
   const submitHandler = async (data) => {
-    data.userId = localStorage.getItem("id");
-    const res = await axios.post("http://localhost:3000/addparking", data);
-    console.log(res.data);
+    try {
+      data.userId = localStorage.getItem("id");
+      console.log("Data to Submit:", data);  // Check all fields are present
+  
+      const res = await axios.post("http://localhost:3000/addparking", data, {
+        headers: { "Content-Type": "application/json" },
+      });
+      console.log("Parking added successfully:", res.data);
+    } catch (error) {
+      console.error("Error adding parking:", error.response?.data || error.message);
+    }
   };
 
   return (
@@ -54,11 +62,11 @@ export const Parking = () => {
               </div>
               <div className="mb-3">
                 <label className="form-label">Total Capacity Four Wheeler</label>
-                <input type="number" className="form-control" {...register("totalCapacityfouroWheeler")} />
+                <input type="number" className="form-control" {...register("totalCapacityFourWheeler")} />
               </div>
               <div className="mb-3">
                 <label className="form-label">Parking Type</label>
-                <select className="form-select" {...register("parkingtype")}>
+                <select className="form-select" {...register("parkingType")}>
                   <option value="Road">Road</option>
                   <option value="Ground">Ground</option>
                   <option value="Building">Building</option>
